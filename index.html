@@ -300,25 +300,170 @@
             color: #4a5568;
         }
 
-        .stats {
-            display: flex;
-            margin-top: 30px;
-            gap: 30px;
+        /* Stats Section - Elegant Redesign */
+        .stats-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, #001a33 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
         }
 
-        .stat-item {
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .stats-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .stats-title {
+            color: white;
             text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 70px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
-        .stat-item h3 {
+        .stats-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            perspective: 1000px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+            transform-style: preserve-3d;
+            transform: translateZ(0);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--secondary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px) translateZ(20px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .stat-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .stat-icon {
             font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 5px;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            display: inline-block;
+            transition: var(--transition);
         }
 
-        .stat-item p {
-            font-size: 0.9rem;
-            color: #718096;
+        .stat-card:hover .stat-icon {
+            transform: rotateY(180deg) scale(1.1);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, var(--secondary), white);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            transition: var(--transition);
+            position: relative;
+            display: inline-block;
+        }
+
+        .stat-card:hover .stat-number {
+            transform: scale(1.05);
+        }
+
+        .stat-number::after {
+            content: '+';
+            position: absolute;
+            right: -15px;
+            color: var(--secondary);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+
+        .stat-card:hover .stat-label {
+            color: white;
+            letter-spacing: 1.5px;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .stats-title {
+                font-size: 2.2rem;
+                margin-bottom: 50px;
+            }
+            
+            .stat-card {
+                padding: 30px 20px;
+            }
         }
 
         .services {
@@ -796,8 +941,9 @@
     </header>
 
     <section class="hero" id="home">
-        <video class="hero-video" autoplay muted loop playsinline>
-            <source src="./media/video/stadum.mp4" type="video/mp4">
+        <video class="hero-video" autoplay muted loop>
+            
+            <source src="./media/video/stadium.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         
@@ -830,19 +976,49 @@
                     team of professionals to serve a wide range of customers—businesses, NGOs, 
                     institutions, and the public sector. Our forward-thinking approach and dedication 
                     to quality make us one of the most trusted enterprises in South Sudan.</p>
-                <div class="stats">
-                    <div class="stat-item">
-                        <h3>500+</h3>
-                        <p>Advertising Locations</p>
+   
+            </div>
+        </div>
+    </section>
+
+     <section class="stats-section">
+        <div class="stats-container">
+            <h2 class="stats-title">Our Achievements</h2>
+            
+            <div class="stats-grid">
+         
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-building"></i>
                     </div>
-                    <div class="stat-item">
-                        <h3>12</h3>
-                        <p>Years Experience</p>
+                    <div class="stat-number" data-count="150">0</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                
+        
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
                     </div>
-                    <div class="stat-item">
-                        <h3>95%</h3>
-                        <p>Client Retention</p>
+                    <div class="stat-number" data-count="95">0</div>
+                    <div class="stat-label">Satisfied Clients</div>
+                </div>
+                
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-globe"></i>
                     </div>
+                    <div class="stat-number" data-count="12">0</div>
+                    <div class="stat-label">Countries Served</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="stat-number" data-count="27">0</div>
+                    <div class="stat-label">Industry Awards</div>
                 </div>
             </div>
         </div>
@@ -1241,6 +1417,7 @@
         document.addEventListener('click', attemptPlay, { once: true });
         document.addEventListener('scroll', attemptPlay, { once: true });
         document.addEventListener('touchstart', attemptPlay, { once: true });
+        
     });
 
     
@@ -1252,6 +1429,35 @@
             alert('Thank you for your message! We will contact you soon.');
             this.reset();
         });
+
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            const speed = 200;
+            
+            statNumbers.forEach(stat => {
+                const target = +stat.getAttribute('data-count');
+                const count = +stat.innerText;
+                const increment = target / speed;
+                
+                if (count < target) {
+                    stat.innerText = Math.ceil(count + increment);
+                    setTimeout(animateStats, 1);
+                } else {
+                    stat.innerText = target;
+                }
+            });
+        }
+ 
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        observer.observe(document.querySelector('.stats-section'));
     </script>
 </body>
 </html>
