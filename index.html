@@ -218,7 +218,6 @@
         header.scrolled .mobile-menu-btn {
             color: var(--primary);
         }
-
         .hero {
             height: 100vh;
             min-height: 700px;
@@ -228,29 +227,10 @@
             align-items: center;
             text-align: center;
             color: var(--light);
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
         }
-        
-        .hero-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-        }
-        
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 0;
-        }
-        
+
         .hero-content {
             position: relative;
             z-index: 1;
@@ -258,6 +238,7 @@
             margin: 0 auto;
             padding: 0 20px;
         }
+
 
         .about {
             background: var(--light);
@@ -941,16 +922,9 @@
     </header>
 
     <section class="hero" id="home">
-        <video class="hero-video" autoplay muted loop>
-            
-            <source src="./media/video/stadium.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        
         <div class="hero-content">
             <h1>Elevating Your Brand Through Strategic Outdoor Advertising</h1>
-            <p>Sudalex Enterprises Limited is a multi-disciplinary company based 
-                in Juba, South Sudan, operating in three strategic sectors</p>
+            <p>Sudalex Enterprises Limited is a multi-disciplinary company based in Juba, South Sudan, operating in three strategic sectors.</p>
             <div class="hero-btns">
                 <a href="#services" class="btn">Our Services</a>
                 <a href="#contact" class="btn btn-outline">Get In Touch</a>
@@ -1420,14 +1394,46 @@
     });
 
     
-        const contactForm = document.getElementById('contactForm');
-        
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            alert('Thank you for your message! We will contact you soon.');
-            this.reset();
-        });
+  const contactForm = document.getElementById('contactForm');
+
+contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const formAction = 'https://formsubmit.co/info@sudalex.com'; 
+    const formMethod = 'POST';
+    
+
+    const hiddenInputs = [
+        { name: '_captcha', value: 'false' },
+        { name: '_subject', value: 'New Message from Sudalex Website' },
+        { name: '_template', value: 'table' }, 
+        { name: '_next', value: window.location.href + '?success=true' } 
+    ];
+    
+
+    hiddenInputs.forEach(input => {
+        const hiddenField = document.createElement('input');
+        hiddenField.type = 'hidden';
+        hiddenField.name = input.name;
+        hiddenField.value = input.value;
+        contactForm.appendChild(hiddenField);
+    });
+    
+    contactForm.action = formAction;
+    contactForm.method = formMethod;
+    
+    contactForm.submit();
+    
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+    
+    setTimeout(() => {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    }, 3000);
+});
 
         function animateStats() {
             const statNumbers = document.querySelectorAll('.stat-number');
