@@ -1248,21 +1248,21 @@
                 </div>
                 
                 <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <input type="text" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" placeholder="Subject">
-                        </div>
-                        <div class="form-group">
-                            <textarea placeholder="Your Message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
+              <form id="contactForm">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="subject" placeholder="Subject">
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
                 </div>
             </div>
         </div>
@@ -1394,45 +1394,46 @@
     });
 
     
-  const contactForm = document.getElementById('contactForm');
+const contactForm = document.getElementById('contactForm');
 
 contactForm.addEventListener('submit', function(e) {
     e.preventDefault();
-
-    const formAction = 'https://formsubmit.co/info@sudalex.com'; 
+    const formAction = 'https://formsubmit.co/ajax/info@sudalex.com'; 
     const formMethod = 'POST';
+    const formData = new FormData(contactForm);
     
-
-    const hiddenInputs = [
-        { name: '_captcha', value: 'false' },
-        { name: '_subject', value: 'New Message from Sudalex Website' },
-        { name: '_template', value: 'table' }, 
-        { name: '_next', value: window.location.href + '?success=true' } 
-    ];
-    
-
-    hiddenInputs.forEach(input => {
-        const hiddenField = document.createElement('input');
-        hiddenField.type = 'hidden';
-        hiddenField.name = input.name;
-        hiddenField.value = input.value;
-        contactForm.appendChild(hiddenField);
-    });
-    
-    contactForm.action = formAction;
-    contactForm.method = formMethod;
-    
-    contactForm.submit();
+    formData.append('_captcha', 'false');
+    formData.append('_subject', 'New Message from Sudalex Website');
+    formData.append('_template', 'table');
+    formData.append('_next', window.location.href + '?success=true');
     
     const submitBtn = contactForm.querySelector('button[type="submit"]');
     const originalText = submitBtn.textContent;
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
-    
-    setTimeout(() => {
+
+    fetch(formAction, {
+        method: formMethod,
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.json();
+    })
+    .then(data => {
+        alert('Message sent successfully! We will contact you soon.');
+        contactForm.reset();
+   
+        window.location.href = window.location.href + '?success=true';
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('There was a problem sending your message. Please try again or contact us directly at info@sudalex.com');
+    })
+    .finally(() => {
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
-    }, 3000);
+    });
 });
 
         function animateStats() {
