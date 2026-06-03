@@ -29,6 +29,7 @@
             --shadow-md: 0 25px 40px -14px rgba(0, 0, 0, 0.08);
             --shadow-hover: 0 30px 50px -18px rgba(0, 0, 0, 0.15);
             --transition-smooth: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            --whatsapp: #25D366;
         }
 
         body {
@@ -207,6 +208,9 @@
             font-weight: 600;
             transition: var(--transition-smooth);
             box-shadow: 0 8px 20px -8px rgba(0,0,0,0.2);
+            display: inline-block;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-primary:hover {
@@ -229,6 +233,16 @@
             background: white;
             color: var(--primary);
             border-color: white;
+        }
+
+        .btn-whatsapp {
+            background: var(--whatsapp);
+            color: white;
+            border: none;
+        }
+        .btn-whatsapp:hover {
+            background: #128C7E;
+            color: white;
         }
 
         /* About modern split */
@@ -478,6 +492,7 @@
             display: flex;
             gap: 18px;
             margin-bottom: 32px;
+            align-items: center;
         }
 
         .contact-icon {
@@ -490,6 +505,24 @@
             justify-content: center;
             color: var(--secondary);
             font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .whatsapp-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(37, 211, 102, 0.1);
+            padding: 12px 20px;
+            border-radius: 48px;
+            transition: 0.2s;
+            text-decoration: none;
+            color: var(--dark-text);
+            margin-top: 15px;
+        }
+        .whatsapp-link:hover {
+            background: rgba(37, 211, 102, 0.2);
+            transform: translateX(5px);
         }
 
         .form-group input, .form-group textarea {
@@ -512,6 +545,30 @@
             background: #0A1A2A;
             color: #ccc;
             padding: 70px 0 30px;
+        }
+
+        /* Floating WhatsApp Button */
+        .float-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--whatsapp);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            z-index: 999;
+            text-decoration: none;
+        }
+        .float-wa:hover {
+            transform: scale(1.1);
+            background-color: #128C7E;
         }
 
         @media (max-width: 1024px) {
@@ -542,6 +599,7 @@
             .nav-links a { color: var(--primary) !important; }
             .hero h1 { font-size: 2.5rem; }
             .services-grid { grid-template-columns: 1fr; }
+            .float-wa { width: 50px; height: 50px; font-size: 25px; bottom: 20px; right: 20px; }
         }
 
         @media (max-width: 560px) {
@@ -568,15 +626,20 @@
     </div>
 </header>
 
+
+<a href="https://wa.me/211922202712?text=Hello%20SudaLex%2C%20I%27m%20interested%20in%20your%20services." class="float-wa" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
 <section class="hero" id="home">
     <div class="container">
         <div class="hero-content">
-            <span class="hero-badge"><i class="fas fa-chart-line"></i> Premier Outdoor Media Network</span>
+            <span class="hero-badge"><i class="fab fa-whatsapp"></i> 24/7 WhatsApp Support</span>
             <h1>Elevating Brands Through Strategic Outdoor Impact</h1>
             <p>Integrated advertising, corrugated packaging & real estate solutions driving visibility across South Sudan.</p>
             <div class="hero-btns">
                 <a href="#services" class="btn-primary">Explore Solutions <i class="fas fa-arrow-right"></i></a>
-                <a href="#contact" class="btn-outline-light">Partner With Us</a>
+                <a href="https://wa.me/211922202712?text=Hello%20SudaLex%2C%20I%20need%20a%20quote%20for%20advertising." class="btn-outline-light" style="background:#25D366; border-color:#25D366; color:white;"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
             </div>
         </div>
     </div>
@@ -656,19 +719,24 @@
         <div class="contact-card">
             <h3 style="margin-bottom: 28px;">Let's Connect</h3>
             <div class="contact-item"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div><h4>Headquarters</h4><p>Munuki block C residential Area, Juba, South Sudan</p></div></div>
-            <div class="contact-item"><div class="contact-icon"><i class="fas fa-phone-alt"></i></div><div><h4>Phone</h4><p>(+211) 922 202 712</p></div></div>
+            <div class="contact-item"><div class="contact-icon"><i class="fas fa-phone-alt"></i></div><div><h4>Phone / WhatsApp</h4><p>(+211) 922 202 712</p></div></div>
             <div class="contact-item"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div><h4>Email</h4><p>info@SudaLex.com</p></div></div>
-            <div><h4 style="margin-bottom: 16px;">Follow Us</h4><div style="display:flex; gap:16px;"><a href="#" style="background:#eee; width:40px; height:40px; border-radius:30px; display:flex; align-items:center; justify-content:center;"><i class="fab fa-facebook-f"></i></a><a href="#" style="background:#eee; width:40px; height:40px; border-radius:30px; display:flex; align-items:center; justify-content:center;"><i class="fab fa-linkedin-in"></i></a><a href="#" style="background:#eee; width:40px; height:40px; border-radius:30px; display:flex; align-items:center; justify-content:center;"><i class="fab fa-instagram"></i></a></div></div>
+            <a href="https://wa.me/211922202712?text=Hello%20SudaLex%2C%20I%20am%20interested%20in%20your%20services." class="whatsapp-link" target="_blank" style="text-decoration:none;">
+                <i class="fab fa-whatsapp" style="font-size: 28px; color:#25D366;"></i> 
+                <div><strong>Chat with us directly</strong><br>Click to start WhatsApp conversation</div>
+            </a>
+            <div style="margin-top: 30px;"><h4 style="margin-bottom: 16px;">Follow Us</h4><div style="display:flex; gap:16px;"><a href="#" style="background:#eee; width:40px; height:40px; border-radius:30px; display:flex; align-items:center; justify-content:center;"><i class="fab fa-facebook-f"></i></a><a href="#" style="background:#eee; width:40px; height:40px; border-radius:30px; display:flex; align-items:center; justify-content:center;"><i class="fab fa-linkedin-in"></i></a><a href="#" style="background:#eee; width:40px; height:40px; border-radius:30px; display:flex; align-items:center; justify-content:center;"><i class="fab fa-instagram"></i></a></div></div>
         </div>
         <div class="contact-card">
-            <h3 style="margin-bottom: 28px;">Send a Message</h3>
-            <form id="contactForm">
-                <div class="form-group"><input type="text" name="name" placeholder="Full Name" required></div>
-                <div class="form-group"><input type="email" name="email" placeholder="Email address" required></div>
-                <div class="form-group"><input type="text" name="subject" placeholder="Subject"></div>
-                <div class="form-group"><textarea rows="4" name="message" placeholder="How can we help?"></textarea></div>
-                <button type="submit" class="btn-primary" style="border:none; width:100%; cursor:pointer;">Send Inquiry</button>
+            <h3 style="margin-bottom: 28px;">Send a Message (via WhatsApp)</h3>
+            <form id="whatsappForm">
+                <div class="form-group"><input type="text" id="waName" placeholder="Full Name" required></div>
+                <div class="form-group"><input type="email" id="waEmail" placeholder="Email address" required></div>
+                <div class="form-group"><input type="text" id="waSubject" placeholder="Subject"></div>
+                <div class="form-group"><textarea rows="4" id="waMessage" placeholder="How can we help?" required></textarea></div>
+                <button type="submit" class="btn-primary" style="width:100%; background:#25D366; display:flex; align-items:center; justify-content:center; gap:10px;"><i class="fab fa-whatsapp"></i> Send via WhatsApp</button>
             </form>
+            <p style="font-size:12px; text-align:center; margin-top:16px;">We reply instantly on WhatsApp | (+211) 922-202-712</p>
         </div>
     </div>
 </section>
@@ -678,7 +746,7 @@
         <div><h3 style="color:white;">SudaLex</h3><p style="max-width:260px; margin-top:12px;">Integrating outdoor advertising, real estate & packaging for East Africa's growth.</p></div>
         <div><h4 style="color:var(--secondary);">Services</h4><ul style="list-style:none; margin-top:12px;"><li>Billboard Ads</li><li>Corrugated Boxes</li><li>Real Estate</li></ul></div>
         <div><h4 style="color:var(--secondary);">Company</h4><ul style="list-style:none;"><li>About</li><li>Portfolio</li><li>Contact</li></ul></div>
-        <div><p>© 2026 SudaLex Enterprises Limited. All rights reserved.</p></div>
+        <div><p>© 2026 SudaLex Enterprises Limited. All rights reserved.<br>WhatsApp: (+211) 922-202-712</p></div>
     </div>
 </footer>
 
@@ -698,10 +766,24 @@
     const animateStats = () => { statNumbers.forEach(stat => { const target = +stat.dataset.count; const current = +stat.innerText; const increment = target / 40; if(current < target) { stat.innerText = Math.ceil(current + increment); setTimeout(animateStats, 25); } else stat.innerText = target; }); };
     const observer = new IntersectionObserver((entries) => { if(entries[0].isIntersecting) { animateStats(); observer.disconnect(); } }, { threshold: 0.4 });
     observer.observe(document.querySelector('.stats-neo'));
-    // Contact form (formsubmit demo)
-    const form = document.getElementById('contactForm');
-    if(form) form.addEventListener('submit', async(e) => { e.preventDefault(); const btn = form.querySelector('button'); const original = btn.innerText; btn.innerText = 'Sending...'; btn.disabled = true; const fd = new FormData(form); fd.append('_captcha', 'false'); fd.append('_subject', 'New website message'); try { await fetch('https://formsubmit.co/ajax/info@sudalex.com', { method: 'POST', body: fd }); alert('Message sent! Our team will respond within 24 hours.'); form.reset(); } catch(err) { alert('Please email directly: info@sudalex.com'); } finally { btn.innerText = original; btn.disabled = false; } });
-    // smooth anchor
+    
+    // WhatsApp Form Submission
+    const waForm = document.getElementById('whatsappForm');
+    waForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('waName').value.trim();
+        const email = document.getElementById('waEmail').value.trim();
+        const subject = document.getElementById('waSubject').value.trim() || 'Inquiry';
+        const message = document.getElementById('waMessage').value.trim();
+        if(!name || !email || !message) { alert("Please fill name, email and message."); return; }
+        let fullMsg = `*New Lead from Sudalex Website*%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Email:* ${encodeURIComponent(email)}%0A*Subject:* ${encodeURIComponent(subject)}%0A*Message:* ${encodeURIComponent(message)}%0A%0A-- Sent via website contact form`;
+        const whatsappURL = `https://wa.me/211922202712?text=${fullMsg}`;
+        window.open(whatsappURL, '_blank');
+        waForm.reset();
+        alert("Opening WhatsApp to send your message. Please click Send in WhatsApp.");
+    });
+    
+    // Smooth anchor
     document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e) { const target = document.querySelector(this.getAttribute('href')); if(target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }); });
 </script>
 </body>
